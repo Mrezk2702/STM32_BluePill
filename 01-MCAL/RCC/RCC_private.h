@@ -51,12 +51,7 @@ typedef struct
 
 
 
-typedef enum
-{
-	APB1=2,
-	APB2=4,
-	AHB=6
-}BusType;
+
 
 #define ENABLE 	1
 #define DISABLE 0

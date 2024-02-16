@@ -9,7 +9,6 @@
 #include "..\..\04-LIB\BIT_MATH.h"
 #include "..\..\04-LIB\STD_TYPES.h"
 #include "RCC_private.h"
-
 #include "RCC_register.h"
 #include "RCC_config.h"
 #include "RCC_interface.h"
@@ -108,9 +107,9 @@ RCC_ERR RCC_voidEnableClock(BusType Copy_enmBusName,u8 Copy_u8PeriphID)
 		switch (Copy_enmBusName)
 		{
 		case AHB:
-			if(Copy_u8PeriphID<=10||Copy_u8PeriphID!=3||// @suppress("Avoid magic numbers")
-					Copy_u8PeriphID!=5||// @suppress("Avoid magic numbers")
-					Copy_u8PeriphID!=7|| // @suppress("Avoid magic numbers")
+			if(Copy_u8PeriphID<=10&&Copy_u8PeriphID!=3&&// @suppress("Avoid magic numbers")
+					Copy_u8PeriphID!=5&&// @suppress("Avoid magic numbers")
+					Copy_u8PeriphID!=7&& // @suppress("Avoid magic numbers")
 					Copy_u8PeriphID!=9)// @suppress("Avoid magic numbers")
 			{
 				SET_BIT(RCC_AHBENR_REG,Copy_u8PeriphID);
@@ -124,14 +123,13 @@ RCC_ERR RCC_voidEnableClock(BusType Copy_enmBusName,u8 Copy_u8PeriphID)
 			break;
 
 		case APB1:
-			if(Copy_u8PeriphID!=10||// @suppress("Avoid magic numbers")
-					Copy_u8PeriphID!=9||// @suppress("Avoid magic numbers")
-					Copy_u8PeriphID!=11||// @suppress("Avoid magic numbers")
-					Copy_u8PeriphID!=12||// @suppress("Avoid magic numbers")
-					Copy_u8PeriphID!=16||// @suppress("Avoid magic numbers")
-					Copy_u8PeriphID!=24||// @suppress("Avoid magic numbers")
-					Copy_u8PeriphID!=26||// @suppress("Avoid magic numbers")
-					Copy_u8PeriphID<30)// @suppress("Avoid magic numbers")
+			if(Copy_u8PeriphID<=5||
+					(Copy_u8PeriphID>10&&Copy_u8PeriphID!=12&&
+							Copy_u8PeriphID!=13&&Copy_u8PeriphID!=16
+							&&Copy_u8PeriphID!=23&&
+							Copy_u8PeriphID!=24&&
+							Copy_u8PeriphID!=30&&
+							Copy_u8PeriphID!=31))// @suppress("Avoid magic numbers")
 			{
 				SET_BIT(RCC_APB1ENR_REG,Copy_u8PeriphID);
 
@@ -146,12 +144,12 @@ RCC_ERR RCC_voidEnableClock(BusType Copy_enmBusName,u8 Copy_u8PeriphID)
 
 		case APB2:
 
-			if(Copy_u8PeriphID!=1||
-					Copy_u8PeriphID<16||// @suppress("Avoid magic numbers")
+			if(Copy_u8PeriphID!=1&&
+					(Copy_u8PeriphID<15||// @suppress("Avoid magic numbers")
 					Copy_u8PeriphID>18||// @suppress("Avoid magic numbers")
-					Copy_u8PeriphID<22)// @suppress("Avoid magic numbers")
+					Copy_u8PeriphID<22))// @suppress("Avoid magic numbers")
 			{
-				SET_BIT(RCC_APB1ENR_REG,Copy_u8PeriphID);
+				SET_BIT(RCC_APB2ENR_REG,Copy_u8PeriphID);
 			}
 			else
 			{

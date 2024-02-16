@@ -7,8 +7,12 @@
 
 #ifndef RCC_INTERFACE_H_
 #define RCC_INTERFACE_H_
-
-
+typedef enum
+{
+	APB1=2,
+	APB2=4,
+	AHB=6
+}BusType;
 
 typedef enum
 {
@@ -19,4 +23,10 @@ typedef enum
 
 
 }RCC_ERR;
+
+
+
+void RCC_voidInitSysClock(void);
+
+RCC_ERR RCC_voidEnableClock(BusType Copy_enmBusName,u8 Copy_u8PeriphID);
 #endif /* RCC_INTERFACE_H_ */
