@@ -1,0 +1,20 @@
+#ifndef GPIO_REGISTER_H_
+#define GPIO_REGISTER_H_
+
+
+
+#define GPIOA_BASE_ADDRESS 0x40010800
+#define GPIOB_BASE_ADDRESS 0x40010C00
+#define GPIOC_BASE_ADDRESS 0x40011000
+
+
+
+
+
+#define GPIO_PORTA ((volatile GPIO *)GPIOA_BASE_ADDRESS)
+#define GPIO_PORTB ((volatile GPIO *)GPIOB_BASE_ADDRESS)
+#define GPIO_PORTC ((volatile GPIO *)GPIOC_BASE_ADDRESS)
+
+
+
+#endif
